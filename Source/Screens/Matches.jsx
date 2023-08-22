@@ -1,11 +1,13 @@
 import { } from 'react'
 import { View, Text } from 'react-native'
+import { TobBar } from '../Components'
+import GlobalStyle from '../Style/Global'
 
 
 const Matches = () => {
     return (
-        <View>
-            <Text>Matches</Text>
+        <View style={GlobalStyle.screenBG} >
+            <TobBar />
         </View>
     )
 }

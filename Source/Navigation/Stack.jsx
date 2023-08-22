@@ -8,8 +8,9 @@ const StackTab = () => {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
-                headerShown:false
-            }}
+                    headerShown: false,
+                    initialRouteName: "Explore",
+                }}
             >
                 <Stack.Screen name="BottomTab" component={BottomTab} />
             </Stack.Navigator>

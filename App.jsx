@@ -1,7 +1,8 @@
 import React from 'react';
-import { SafeAreaView, StatusBar, useColorScheme } from 'react-native';
+import { View, StatusBar, useColorScheme } from 'react-native';
 import StackTab from './Source/Navigation/Stack.jsx'; // Assuming StackTab is your main navigation component
-
+import { ThemeProvider, createTheme } from '@rneui/themed';
+import { SafeAreaView } from 'react-native-safe-area-context'
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -11,14 +12,25 @@ function App() {
     color:'white'
   };
 
+  const theme = createTheme({
+    components: {
+      Button: {
+        raised: true,
+      },
+    },
+  });
+
+
   return (
     <SafeAreaView style={containerStyle}>
+      <ThemeProvider theme={theme}>
       <StatusBar
         barStyle={'light-content'}
         backgroundColor="#10141F"
         color='white'
       />
-      <StackTab /> 
+        <StackTab /> 
+        </ThemeProvider>
     </SafeAreaView>
   );
 }
