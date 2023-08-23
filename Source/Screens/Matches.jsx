@@ -8,6 +8,7 @@ const Matches = () => {
     return (
         <View style={GlobalStyle.screenBG} >
             <TobBar />
+            
         </View>
     )
 }
