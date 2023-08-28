@@ -1,14 +1,13 @@
 import {useState } from 'react'
 import { View, Text, ScrollView, FlatList, TouchableOpacity, StyleSheet, RefreshControl, ImageBackground } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
-import { TobBar } from '../Components'
+import {Filter, TobBar } from '../Components'
 
 
 const Explore = () => {
     const [Tab, setTab] = useState(null)
     const [refreshing, setRefreshing] = useState(false);
     const Tabs = ['🎶 Playlists', '🔥 Most Listenings', '🎤 Artists', '🎙 Podcasts']
-
     const CurrentlyPlaying = [
         {
             name: 'Arjit Singh',
@@ -262,7 +261,9 @@ const Explore = () => {
                 />
             }
         >
+            
             <TobBar />
+
             <View>
             <FlatList
                 data={Tabs}
@@ -291,6 +292,7 @@ const Explore = () => {
             <View style={Style.headerContainer}>
                 <Text style={Style.headerText}>Currently Played</Text>
             </View>
+            
             <FlatList
                 data={CurrentlyPlaying}
                 renderItem={PlayingTab}
@@ -304,6 +306,7 @@ const Explore = () => {
                 }}
                 
             />
+            
             
             
         </ScrollView>

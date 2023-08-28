@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import BottomTab from "./BottomTab";
 import { Explore, Likes, Matches, Messages, Signin } from "../Screens";
 import { SignInWithEmailPassword, SignInWithGoogle, SignInWithPhoneNumber } from "../Components";
+import MyDrawer from "./Drawer";
 const Stack = createStackNavigator()
 
 const StackTab = () => {
@@ -14,11 +15,12 @@ const StackTab = () => {
                     initialRouteName: "Explore",
                 }}
             >
+                <Stack.Screen name="BottomTab" component={BottomTab} />
                 <Stack.Screen name="Signin" component={Signin} />
                 <Stack.Screen name="SignInWithGoogle" component={SignInWithGoogle} />
                 <Stack.Screen name="SignInWithPhoneNumber" component={SignInWithPhoneNumber} />
                 <Stack.Screen name="SignInWithEmailPassword" component={SignInWithEmailPassword} />
-                <Stack.Screen name="BottomTab" component={BottomTab} />
+                <Stack.Screen name="Drawer" component={MyDrawer} />
                 {/* <Stack.Screen name="Explore" component={Explore} />
                 <Stack.Screen name="Likes" component={Likes} />
                 <Stack.Screen name="Matches" component={Matches} />
