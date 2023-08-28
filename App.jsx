@@ -1,8 +1,11 @@
+import 'react-native-gesture-handler'
 import React from 'react';
-import { View, StatusBar, useColorScheme } from 'react-native';
+import { View, StatusBar, useColorScheme, Text } from 'react-native';
 import StackTab from './Source/Navigation/Stack.jsx'; // Assuming StackTab is your main navigation component
 import { ThemeProvider, createTheme } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context'
+import GlobalStyle from './Source/Style/Global.jsx';
+import Filter from './Source/Components/Filter.jsx';
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -30,6 +33,7 @@ function App() {
         color='white'
       />
         <StackTab /> 
+        <Filter />
         </ThemeProvider>
     </SafeAreaView>
   );
