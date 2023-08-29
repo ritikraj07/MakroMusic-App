@@ -33,7 +33,7 @@ function App() {
         color='white'
       />
         <StackTab /> 
-        <Filter />
+        {/* <Filter /> */}
         </ThemeProvider>
     </SafeAreaView>
   );

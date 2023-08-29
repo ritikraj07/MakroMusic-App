@@ -4,9 +4,10 @@ import { View, Text, Animated, StyleSheet, ScrollView, PanResponder, Dimensions,
 import Entypo from 'react-native-vector-icons/Entypo'
 import RadioBtm from './RadioBtm';
 import HorizontalLine from './HorizontalLine';
-
+import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window')
 const Filter = () => {
+    const Navigation = useNavigation()
     const [topValue, setTopValue] = useState(0);
     const [GP, setGP] = useState(4)
     const [Age, setAge] = useState({ min: 18, max: 65 })
@@ -135,9 +136,9 @@ const Filter = () => {
                 padding: 10,
                 paddingHorizontal: 15,
             },
-            { top: topValue },
+            // { top: topValue },
         ]}
-        {...filterPanResponder.panHandlers}
+        // {...filterPanResponder.panHandlers}
     >
 
 
@@ -147,7 +148,7 @@ const Filter = () => {
                 size={30}
                 color="white"
                 style={{ position: 'absolute', left: 10 }}
-                onPress={handleCloseFilter}
+                onPress={()=>Navigation.goBack()}
             />
 
             <Text style={[styles.lable,]} >Matching filters</Text>

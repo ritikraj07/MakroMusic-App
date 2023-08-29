@@ -1,4 +1,4 @@
-import { View, Text, Image, TextInput, StyleSheet } from 'react-native'
+import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import Feather from "react-native-vector-icons/Feather";
 import FA6 from "react-native-vector-icons/FontAwesome6"; //sliders
 import { useNavigation } from '@react-navigation/native';
@@ -17,8 +17,14 @@ const TobBar = () => {
                 style={{ color: 'white' }}
             />
         </View>
-        <FA6 name='sliders' style={Style.icon} color={'white'} /> 
-        <Image source={{ uri: profile_uri }} style={Style.image} />
+        <TouchableOpacity onPress={()=>Navigation.navigate('Filter')} >
+
+            <FA6 name='sliders' style={Style.icon} color={'white'} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => Navigation.navigate('Profile')} >
+            <Image source={{ uri: profile_uri }} style={Style.image} />
+
+        </TouchableOpacity>
     </View>
 }
 
@@ -34,7 +40,7 @@ const Style = StyleSheet.create({
         height: 40,
         borderRadius: 50,
         resizeMode: 'center',
-        margin:10
+        margin: 10
     },
     search: {
         flexDirection: 'row',
@@ -45,12 +51,12 @@ const Style = StyleSheet.create({
         paddingHorizontal: 3,
         width: '60%',
         height: 40,
-        backgroundColor:'#091228'
+        backgroundColor: '#091228'
     },
     icon: {
         margin: 1,
-        fontSize:20
-        
+        fontSize: 20
+
     }
 })
 

@@ -10,6 +10,10 @@ import FindNewMatch from "./FindNewMatch";
 import Filter from "./Filter";
 import HorizontalLine from "./HorizontalLine";
 import Slider from "./Slider";
+import FlowingColorText from "./FlowingColorText";
+import ArtistsDisplayer from "./ArtistsDisplayer";
+import HBar from "./HBar";
+import RecentlyPlayedSong from "./RecentlyPlayedSong";
 
 
 
@@ -18,6 +22,7 @@ export {
     TobBar, TobBarMes, IgnoredMatches,
     PeopleWLU, SignInWithEmailPassword,
     SignInWithPhoneNumber, FindNewMatch,
-    SignInWithGoogle, Filter,
-    Swipe, HorizontalLine, Slider
+    SignInWithGoogle, Filter, FlowingColorText,
+    Swipe, HorizontalLine, Slider, ArtistsDisplayer,
+    HBar, RecentlyPlayedSong
 }

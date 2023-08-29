@@ -276,7 +276,7 @@ const Messages = () => {
                     renderItem={NewMatches}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={{paddingHorizontal:10}}
+                    contentContainerStyle={{ paddingHorizontal: 10 }}
                 />
             </View>
 
