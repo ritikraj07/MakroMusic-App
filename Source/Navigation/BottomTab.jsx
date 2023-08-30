@@ -20,8 +20,8 @@ const BottomTab = () => {
            
             tabBarStyle: {
                 padding:0,    
-                // height: 100,
-                // elevation: 70,
+                height: 60,
+                elevation: 70,
                 backgroundColor: 'rgb(9, 18, 40)',
                 borderTopWidth: 0,
                 borderTopColor: "transparent",
@@ -33,6 +33,7 @@ const BottomTab = () => {
                     height: 0,
                 },
                 shadowRadius: 0,
+                
                 
             },
         //     tabBarBackground: () => (

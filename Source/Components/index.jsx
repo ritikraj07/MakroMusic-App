@@ -14,6 +14,10 @@ import FlowingColorText from "./FlowingColorText";
 import ArtistsDisplayer from "./ArtistsDisplayer";
 import HBar from "./HBar";
 import RecentlyPlayedSong from "./RecentlyPlayedSong";
+import CreateAccWithEmailPassword from "./CreateAccWithEmailPassword";
+import LoadingScreen from "./LoadingScreen";
+import isValidEmail from "./isValidEmail";
+import showToast from "./showToast";
 
 
 
@@ -24,5 +28,6 @@ export {
     SignInWithPhoneNumber, FindNewMatch,
     SignInWithGoogle, Filter, FlowingColorText,
     Swipe, HorizontalLine, Slider, ArtistsDisplayer,
-    HBar, RecentlyPlayedSong
+    HBar, RecentlyPlayedSong, CreateAccWithEmailPassword,
+    LoadingScreen, isValidEmail, showToast
 }
