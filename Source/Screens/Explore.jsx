@@ -236,11 +236,21 @@ const Explore = () => {
         return <TouchableOpacity key={item.name} style={Style.container} nestedScrollEnabled={true}>
             <ImageBackground borderRadius={15} source={{ uri: item.image }} style={Style.playTab}  >
                 <LinearGradient
-                    colors={['rgba(9,18,40, 1)', 'rgba(0, 0, 0, 0.9)', 'rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0.4)','transparent']} 
+                    colors={[
+                        'rgba(9,18,40, 0)',
+                        'rgba(9,18,40, 0)',
+                        'rgba(9,18,40, 0.2)',
+                        'rgba(9,18,40, 0.4)',
+                        'rgba(9,18,40, 0.6)',
+                        'rgba(9,18,40, 0.8)',
+                        'black',
+                    ]}
                     style={Style.gradient}
-                    start={{ x: 1, y: 1 }}
-                    end={{ x: 1, y: 0.1 }}
+                    start={{ x: 0.5, y: 0 }}
+                    end={{ x: 0.5, y: 1 }}
                 >
+
+
                     
                     <Text numberOfLines={1} style={Style.songName}>{item.name}</Text>
                     <Text numberOfLines={1} style={Style.songSinger} >{item.singer}</Text>
@@ -361,6 +371,18 @@ const Style = StyleSheet.create({
         
     },
 
+    // gradient: {
+    //     flex: 1,
+    //     justifyContent: 'center',
+    //     padding: 10,
+    //     position: 'absolute',
+    //     bottom: 1,
+    //     width: '100%',
+    //     borderRadius: 15,
+    //     borderTopLeftRadius: 0,
+    //     borderTopRightRadius: 0,
+    //     backgroundColor: '#091228'
+    // },
     gradient: {
         flex: 1,
         justifyContent: 'center',
@@ -370,7 +392,7 @@ const Style = StyleSheet.create({
         width: '100%',
         borderRadius: 15,
         borderTopLeftRadius: 0,
-        borderTopRightRadius: 0
+        borderTopRightRadius: 0,
     },
     songName: {
         color: 'white',

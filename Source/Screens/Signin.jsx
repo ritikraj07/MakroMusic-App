@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import GlobalStyle from '../Style/Global';
-
+import auth, { firebase } from '@react-native-firebase/auth'
 import { SignInWithGoogle } from '../Components';
 
 
@@ -10,6 +10,26 @@ const Signin = ({navigation}) => {
 
     let logo = 'https://cdn-images-1.medium.com/fit/t/1600/480/1*FpqeaQi8Q1siHs9M2gEMZA.png'
    
+    
+
+     useEffect(() => {
+        const unsubscribe = auth().onAuthStateChanged((currentUser) => {
+            currentUser.reload()
+            if (currentUser) {
+                // setUser(currentUser);
+                console.log(currentUser)
+                if (currentUser.emailVerified) {
+                    // Update your UI to show that the email is verified
+                    console.log("user Verified ====>>>>>><<<<<<")
+                    navigation.navigate('BottomTab')
+                    
+                }
+            }
+        });
+
+        return unsubscribe;
+    }, []);
+
     return (
         <View
             style={[GlobalStyle.screenBG, { alignItems: 'center', paddingHorizontal:10 }]}
@@ -51,7 +71,7 @@ const Signin = ({navigation}) => {
 
 
             <TouchableOpacity style={[styles.btm, { width: '95%' }]}
-               
+               onPress={()=>navigation.navigate('CreateAccount')}
             >
                 <Text style={styles.btmText}> Create New Account</Text>
             </TouchableOpacity>

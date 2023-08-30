@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import GlobalStyle from '../Style/Global';
 import auth, { firebase } from '@react-native-firebase/auth'
+import { LoadingScreen, showToast } from '../Components';
 const SignInWithEmailPassword = ({navigation}) => {
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
@@ -16,40 +17,67 @@ const SignInWithEmailPassword = ({navigation}) => {
     //             if (currentUser.emailVerified) {
     //                 // Update your UI to show that the email is verified
     //                 console.log("user Verified ====>>>>>><<<<<<")
-    //                 navigation.navigate('Explore')
+                    
     //             }
     //         }
     //     });
 
-        // return unsubscribe;
+    //     return unsubscribe;
     // }, []);
 
     async function SignIn() {
         try {
-            const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+            const userCredential = await auth().signInWithEmailAndPassword(email, password);
             const user = userCredential.user;
             console.log('User created successfully:', user);
 
-            if (user) {
-                user.sendEmailVerification()
-                    .then(() => {
-                        console.log('Verification email sent');
-                        TimerOnVerify()
-                    })
-                    .catch((error) => {
-                        console.log('Error sending verification email:', error);
-                    });
+            if (!user.emailVerified) {
+                CheckVerified()
+                
+                if (user) {
+                    user.sendEmailVerification()
+                        .then(() => {
+                            console.log('Verification email sent');
+                            showToast('Verification email send!', 'short')
+                        })
+                        .catch((error) => {
+                            console.log('Error sending verification email:', error);
+                            showToast(email, 'long')
+                        });
+                }
+            } else {
+                navigation.navigate('BottomTab')
             }
+
+           
         } catch (error) {
-            console.log('Error creating user:', error);
+            let bool = false;
+            // console.log(error.split('').filter((e, i) => {
+            //     if (e =='[' && i < 4 && !bool) {
+            //         return e
+            //     } else if (e==']' && i>10) {
+            //         bool=true
+            //     }
+            // }));
+
+            const input = `${error}`
+
+
+            if (typeof input === "string") {
+                const errorCodePattern = /\[([^\]]+)\]/;
+                const matches = input.match(errorCodePattern);
+                const errorCode = matches ? matches[1] : "Unknown error";
+                showToast(errorCode.replace("auth/", ""), 'short')
+                console.log(errorCode.replace("auth/", ""));
+            } else {
+                console.log("Invalid input format");
+            }
+            
+            
         }
     }
 
-    function TimerOnVerify() {
-        setTimeout(() => {
-            navigation.navigate('BottomTab')
-        }, 10000);
-    }
+ 
 
     async function CheckVerified() {
         try {
@@ -60,8 +88,10 @@ const SignInWithEmailPassword = ({navigation}) => {
                     console.log(currentUser)
                     if (currentUser.emailVerified) {
                         // Update your UI to show that the email is verified
-                        console.log("user Verified ====>>>>>><<<<<<")
+                        // console.log("user Verified ====>>>>>><<<<<<")
                         navigation.navigate('Explore')
+                    } else {
+                        showToast('Please Verify Your Email', 'short')
                     }
                 }
             });
@@ -78,6 +108,7 @@ const SignInWithEmailPassword = ({navigation}) => {
             }}
                 resizeMode='contain'
                 source={{ uri: logo }} />
+            
 
             <View style={styles.inputContainer}  >
                 <Text style={styles.lable} > Login with Email</Text>
@@ -95,7 +126,7 @@ const SignInWithEmailPassword = ({navigation}) => {
                     textContentType='password'
                 />
                 <TouchableOpacity style={styles.btm} onPress={SignIn} >
-                    <Text style={styles.btmText}>Verify Email</Text>
+                    <Text style={styles.btmText}>Login</Text>
                 </TouchableOpacity>
             </View>
 

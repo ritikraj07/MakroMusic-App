@@ -2,7 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTab from "./BottomTab";
 import { CreateAccount, Explore, Likes, Matches, Messages, Profile, Signin } from "../Screens";
-import { Filter, SignInWithEmailPassword, SignInWithGoogle, SignInWithPhoneNumber } from "../Components";
+import { CreateAccWithEmailPassword, Filter, SignInWithEmailPassword, SignInWithGoogle, SignInWithPhoneNumber } from "../Components";
 import MyDrawer from "./Drawer";
 const Stack = createStackNavigator()
 
@@ -16,9 +16,10 @@ const StackTab = () => {
                 }}
             >
                 <Stack.Screen name="BottomTab" component={BottomTab} />
-                <Stack.Screen name="CreateAccount" component={CreateAccount} />
-                <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Signin" component={Signin} />
+                <Stack.Screen name="CreateAccount" component={CreateAccount} />
+                <Stack.Screen name="CreateAccWithEmailPassword" component={CreateAccWithEmailPassword} />
+                <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="SignInWithGoogle" component={SignInWithGoogle} />
                 <Stack.Screen name="SignInWithPhoneNumber" component={SignInWithPhoneNumber} />
                 <Stack.Screen name="SignInWithEmailPassword" component={SignInWithEmailPassword} />
