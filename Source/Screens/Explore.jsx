@@ -236,8 +236,10 @@ const Explore = () => {
         return <TouchableOpacity key={item.name} style={Style.container} nestedScrollEnabled={true}>
             <ImageBackground borderRadius={15} source={{ uri: item.image }} style={Style.playTab}  >
                 <LinearGradient
-                    colors={['rgba(0, 0, 0, 0.2)', 'rgb(9,18,40)']} 
+                    colors={['rgba(9,18,40, 1)', 'rgba(0, 0, 0, 0.9)', 'rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0.4)','transparent']} 
                     style={Style.gradient}
+                    start={{ x: 1, y: 1 }}
+                    end={{ x: 1, y: 0.1 }}
                 >
                     
                     <Text numberOfLines={1} style={Style.songName}>{item.name}</Text>
