@@ -57,6 +57,8 @@ const Matches = () => {
         }
     ])
 
+    
+
     const swipe = useRef(new Animated.ValueXY()).current
     const panResponder = PanResponder.create({
         onMoveShouldSetPanResponder: () => true,

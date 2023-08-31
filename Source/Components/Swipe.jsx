@@ -37,7 +37,8 @@ const Swipe = ({ item, isFirst, swipe, ...rest }) => {
             style={[
                 { position: 'absolute', height: '100%', width: '100%', },
                 bool ? { left: 0, borderTopLeftRadius: 10, borderBottomLeftRadius:10 } : { right: 0, borderTopRightRadius: 10, borderBottomRightRadius:10 }
-            ]}
+                ]}
+                resizeMode='cover'
             start={bool ? { x: 0, y: 0.5 } : { x: -0.1, y: 0.5 }}
             end={bool ? { x: 1, y: 0.5 } : { x: 1, y: 0.5 }}
         >

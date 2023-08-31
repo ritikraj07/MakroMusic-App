@@ -2,23 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native'
 import GlobalStyle from '../Style/Global';
 import auth, { firebase } from '@react-native-firebase/auth'
-
+import { setLoadingFalse, setLoadingTrue } from '../Redux/Reducers/loading';
+import {useDispatch} from 'react-redux'
 const SignInWithPhoneNumber = ({navigation}) => {
     const [confirm, setConfirm] = useState(null);
     const [phoneNumber, setphoneNumber] = useState(0)
     const [code, setCode] = useState(0);
     const [otpSend, setotpSend] = useState(true)
-
+    const dispatch = useDispatch()
 
     let logo = 'https://cdn-images-1.medium.com/fit/t/1600/480/1*FpqeaQi8Q1siHs9M2gEMZA.png'
 
     async function signInWithPhoneNumber() {
-        const confirmation = await auth().signInWithPhoneNumber(`+91 ${phoneNumber}`);
-        setConfirm(confirmation);
-        setotpSend(false)
+        dispatch(setLoadingTrue())
+        try { 
+            const confirmation = await auth().signInWithPhoneNumber(`+91 ${phoneNumber}`);
+            setConfirm(confirmation);
+            setotpSend(false)
+        } catch (error) {
+            console.log('signinwithPhone 23==>', `${error}` )
+        }
+        dispatch(setLoadingFalse())
+     
     }
 
     async function confirmCode() {
+        dispatch(setLoadingTrue())
         try {
             await confirm.confirm(code);
             console.log('you have log in succefully')
@@ -26,6 +35,7 @@ const SignInWithPhoneNumber = ({navigation}) => {
         } catch (error) {
             console.log('Invalid code.');
         }
+        dispatch(setLoadingFalse())
     }
 
 

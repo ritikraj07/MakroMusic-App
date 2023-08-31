@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { View, Text, SafeAreaView, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import GlobalStyle from '../Style/Global';
-import auth, { firebase } from '@react-native-firebase/auth'
-import { LoadingScreen, showToast } from '../Components';
-const SignInWithEmailPassword = ({navigation}) => {
+import auth from '@react-native-firebase/auth'
+import { showToast } from '../Components';
+import {useDispatch} from 'react-redux'
+import { setLoadingFalse, setLoadingTrue } from '../Redux/Reducers/loading';
+const SignInWithEmailPassword = ({ navigation }) => {
+    const dispatch = useDispatch()
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
     let logo = 'https://cdn-images-1.medium.com/fit/t/1600/480/1*FpqeaQi8Q1siHs9M2gEMZA.png'
@@ -26,6 +29,7 @@ const SignInWithEmailPassword = ({navigation}) => {
     // }, []);
 
     async function SignIn() {
+        dispatch(setLoadingTrue())
         try {
             const userCredential = await auth().signInWithEmailAndPassword(email, password);
             const user = userCredential.user;
@@ -75,6 +79,8 @@ const SignInWithEmailPassword = ({navigation}) => {
             
             
         }
+
+        dispatch(setLoadingFalse())
     }
 
  

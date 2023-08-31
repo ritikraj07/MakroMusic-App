@@ -5,13 +5,13 @@ import GlobalStyle from '../Style/Global';
 import { LoadingScreen, showToast } from '../Components';
 
 const CreateAccount = ({navigation}) => {
-    const [tab, setTab] = useState(1)
+    const [tab, setTab] = useState(0)
     const [selectedIndex, setIndex] = useState(0);
     const [user, setUser] = useState({
         name: '',
         phoneNumber: '',
         email: '',
-        gender: '',
+        gender: 'nale',
         age: '',
 
     })
@@ -22,6 +22,15 @@ const CreateAccount = ({navigation}) => {
             [field]: value,
         }));
     };
+
+    function nextPart() {
+
+        if (user.name.length < 1 || user.age.length < 1 || user.gender.length < 1) {
+            showToast("please fill all data", 'short')
+            return
+        }
+        setTab(1)
+    }
     return (
         <ScrollView contentContainerStyle={[GlobalStyle.screenBG, { alignItems: 'center', paddingHorizontal: 10 }]}>
             <Image style={{
@@ -69,7 +78,7 @@ const CreateAccount = ({navigation}) => {
                 />
 
                 <TouchableOpacity style={styles.btm} onPress={() => {
-                    setTab(1)
+                    nextPart()
                 }} >
                     <Text style={styles.btmText} > Next </Text>
                 </TouchableOpacity>
