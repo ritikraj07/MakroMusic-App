@@ -2,27 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
 import GlobalStyle from '../Style/Global';
 import auth, { firebase } from '@react-native-firebase/auth'
-import { SignInWithGoogle } from '../Components';
-
+import { LoadingScreen, SignInWithGoogle, showToast } from '../Components';
+import { useSelector, useDispatch } from 'react-redux'
+import { setLoadingFalse, setLoadingTrue } from '../Redux/Reducers/loading';
 
 const Signin = ({navigation}) => {
-   
-
+   let dispatch = useDispatch()
+    let isloggedIn = useSelector((state) => state.user.isloggedIn)
+    
+    
     let logo = 'https://cdn-images-1.medium.com/fit/t/1600/480/1*FpqeaQi8Q1siHs9M2gEMZA.png'
    
     
 
-     useEffect(() => {
-        const unsubscribe = auth().onAuthStateChanged((currentUser) => {
-            currentUser.reload()
+    useEffect(() => {
+        if (isloggedIn) {
+            navigation.navigate('BottomTab');
+         }
+        const unsubscribe = auth()?.onAuthStateChanged((currentUser) => {
+            currentUser?.reload()
             if (currentUser) {
                 // setUser(currentUser);
-                console.log(currentUser)
+                // console.log(currentUser)
                 if (currentUser.emailVerified) {
                     // Update your UI to show that the email is verified
-                    console.log("user Verified ====>>>>>><<<<<<")
+                    // console.log("user Verified ====>>>>>><<<<<<")
                     navigation.navigate('BottomTab')
-                    
+                } else {
+                    showToast('Please Verify Your Email','short')
                 }
             }
         });
@@ -41,6 +48,7 @@ const Signin = ({navigation}) => {
                 resizeMode='contain'
                 source={{ uri: logo }} />
             
+            <LoadingScreen />
 
             <View style={styles.inputContainer} >
                 <Image style={styles.img} source={{ uri: 'https://static.vecteezy.com/system/resources/previews/002/079/984/original/phone-icon-flat-style-isolated-on-grey-background-telephone-symbol-call-illustration-sign-for-web-and-mobile-app-free-vector.jpg' }} />
@@ -70,14 +78,26 @@ const Signin = ({navigation}) => {
 
 
 
-            <TouchableOpacity style={[styles.btm, { width: '95%' }]}
+            <TouchableOpacity style={{
+                marginVertical: 10,
+                alignItems: 'center',
+                height: 45,
+                justifyContent: 'center',
+                width: '82%',
+                height: '10%'
+
+            }}
                onPress={()=>navigation.navigate('CreateAccount')}
             >
                 <Text style={styles.btmText}> Create New Account</Text>
             </TouchableOpacity>
 
            
+      
 
+
+
+            
         </View>
     )
 }
