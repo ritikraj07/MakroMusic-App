@@ -1,3 +1,4 @@
+import {useEffect } from 'react'
 import {
     View, ScrollView, Text,
     Image, TouchableOpacity,
@@ -12,27 +13,31 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 
 import auth, { firebase } from '@react-native-firebase/auth'
 
+import { logOut, logIn } from '../Redux/Reducers/user';
 
+import {useSelector, useDispatch} from 'react-redux'
 
 
 
 
 const Settings = ({navigation}) => {
+    let dispatch = useDispatch()
+    let {name, image, age, isloggedIn} = useSelector((state) => state.user)
+    
+    const LogOut = () => {
+        auth().signOut()
+            .then(() => {
+                dispatch(logOut())
 
-
-    const logout =async () => {
-        try {
-            let user = await auth().signOut()
-            navigation.navigate('Signin')
-        } catch (error) {
-            console.log( "error =>",error)
-        }
+            }).catch((error) => {
+                
+            })
     }
 
 
-
-    let image = 'https://imgs.search.brave.com/G3jp9cl5gQ2Cmhq-PAp5yaHRBOk2LavYyfq5OewhCFY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZTMubW91dGhzaHV0/LmNvbS9pbWFnZXMv/aW1hZ2VzcC85MjU5/MzQ2NTJzLmpwZw'
+    let image2 = 'https://imgs.search.brave.com/G3jp9cl5gQ2Cmhq-PAp5yaHRBOk2LavYyfq5OewhCFY/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZTMubW91dGhzaHV0/LmNvbS9pbWFnZXMv/aW1hZ2VzcC85MjU5/MzQ2NTJzLmpwZw'
     let image1 = 'https://cdn.marvel.com/content/1x/042_bluebayou_digital_keyart_teaser_r16_lg.jpg'
+
     const HorizontalLine = ({ }) => <View style={styles.horizontalLine} />
     const RightArrow = () => <AntDesign name="right" color={'#00A8B6'} size={25} />
 
@@ -60,7 +65,7 @@ const Settings = ({navigation}) => {
                 }} >
                     <TouchableOpacity style={[styles.container, styles.topBtm]} >
                         <View style={{width:'25%', margin:5, marginRight:10}} >
-                            <Image style={[styles.img, {position:'absolute', top:10, zIndex:10,left:10} ]} source={{ uri: image }} />
+                            <Image style={[styles.img, {position:'absolute', top:10, zIndex:10,left:10} ]} source={{ uri: image2 }} />
                             <Image style={styles.img} source={{ uri: image1 }} />
                         </View>
                         <View style={{flex:1}} >
@@ -72,7 +77,7 @@ const Settings = ({navigation}) => {
 
                     <TouchableOpacity style={[styles.container, styles.topBtm]} >
                         <View style={{ width: '25%', margin: 5, marginRight: 10 }} >
-                            <Image style={[styles.img, { position: 'absolute', top: 10, zIndex: 10, left: 10 }]} source={{ uri: image }} />
+                            <Image style={[styles.img, { position: 'absolute', top: 10, zIndex: 10, left: 10 }]} source={{ uri: image2 }} />
                             <Image style={styles.img} source={{ uri: image1 }} />
                         </View>
                         <View style={{ flex: 1 }} >
@@ -91,7 +96,7 @@ const Settings = ({navigation}) => {
                         <View style={styles.box} >
                             <Image source={{ uri: image }} style={{width:50, height:50, borderRadius:50}} />
                             <View>
-                                <Text style={styles.lable} > Ritik Raj </Text>
+                                <Text style={styles.lable} > {name}</Text>
                                 <Text style={{ color: color['french-greay'], marginLeft:15 }}>Edit Profile</Text>
                             </View>
                         </View>
@@ -192,9 +197,6 @@ const Settings = ({navigation}) => {
                 </View>
 
 
-                
-
-
 
                 <View style={styles.container} >
                     
@@ -228,7 +230,7 @@ const Settings = ({navigation}) => {
 
                 </View>
 
-                <TouchableOpacity onPress={logout} style={[styles.box, styles.container,{marginBottom:30}]} >
+                <TouchableOpacity onPress={LogOut} style={[styles.box, styles.container,{marginBottom:30}]} >
                     <View style={styles.box} >
                         <MaterialCommunityIcons name="logout" color={'white'} size={20} />
                         <Text style={styles.lable} >Log Out</Text>

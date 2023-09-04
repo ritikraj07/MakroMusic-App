@@ -11,7 +11,8 @@ const { width, height } = Dimensions.get('window')
 
 const Profile = ({ navigation }) => {
     
-    let user = useSelector((store)=>store.user) 
+    let user = useSelector((store) => store.user) 
+    // console.log("===>", user)
 
     return (
         <ScrollView style={[GlobalStyle.screenBG, styles.screen]} nestedScrollEnabled={true} >
@@ -92,7 +93,7 @@ const Profile = ({ navigation }) => {
                 </View>
                 <View style={{ padding: 10, }}>
                     <Text style={styles.title} >My Recently Played</Text>
-                    {user.recentlyPlayedSong.map((item)=><RecentlyPlayedSong key={item.id} item={item} />)}
+                    {user?.recentlyPlayedSong?.map((item)=><RecentlyPlayedSong key={item.id} item={item} />)}
                 </View>
                 
             </View>

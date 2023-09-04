@@ -1,7 +1,10 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 import BottomTab from "./BottomTab";
-import { CreateAccount, Explore, Likes, Matches, Messages, Profile, Settings, Signin } from "../Screens";
+import {
+    CreateAccount, Explore, Likes, Matches, Messages,
+    Profile, Search, Settings, Signin
+} from "../Screens";
 import { CreateAccWithEmailPassword, Filter, SignInWithEmailPassword, SignInWithGoogle, SignInWithPhoneNumber } from "../Components";
 import MyDrawer from "./Drawer";
 const Stack = createStackNavigator()
@@ -15,6 +18,7 @@ const StackTab = () => {
                     initialRouteName: "Explore",
                 }}
             >
+                <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen name="Signin" component={Signin} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="CreateAccount" component={CreateAccount} />

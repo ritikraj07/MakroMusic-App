@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth'
 import { showToast } from '../Components';
 import {useDispatch} from 'react-redux'
 import { setLoadingFalse, setLoadingTrue } from '../Redux/Reducers/loading';
+import { logIn } from '../Redux/Reducers/user';
 const SignInWithEmailPassword = ({ navigation }) => {
     const dispatch = useDispatch()
     const [email, setemail] = useState('')
@@ -95,7 +96,8 @@ const SignInWithEmailPassword = ({ navigation }) => {
                     if (currentUser.emailVerified) {
                         // Update your UI to show that the email is verified
                         // console.log("user Verified ====>>>>>><<<<<<")
-                        navigation.navigate('Explore')
+                        navigation.navigate('Explore');
+                        dispatch(logIn())
                     } else {
                         showToast('Please Verify Your Email', 'short')
                     }

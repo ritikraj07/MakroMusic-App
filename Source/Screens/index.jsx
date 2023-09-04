@@ -6,11 +6,12 @@ import Signin from "./Signin";
 import Profile from "./Profile";
 import CreateAccount from "./CreateAccount";
 import Settings from "./Settings";
+import Search from "./Search";
 
 
 
 export {
     Likes, Explore, Matches, Messages,
     Signin, Profile, CreateAccount,
-    Settings
+    Settings, Search
 }
