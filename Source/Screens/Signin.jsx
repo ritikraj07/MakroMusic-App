@@ -5,6 +5,7 @@ import auth, { firebase } from '@react-native-firebase/auth'
 import { LoadingScreen, SignInWithGoogle, showToast } from '../Components';
 import { useSelector, useDispatch } from 'react-redux'
 import { setLoadingFalse, setLoadingTrue } from '../Redux/Reducers/loading';
+import { logIn } from '../Redux/Reducers/user';
 
 const Signin = ({navigation}) => {
    let dispatch = useDispatch()
@@ -27,6 +28,7 @@ const Signin = ({navigation}) => {
                 if (currentUser.emailVerified) {
                     // Update your UI to show that the email is verified
                     // console.log("user Verified ====>>>>>><<<<<<")
+                    // dispatch(logIn())
                     navigation.navigate('BottomTab')
                 } else {
                     showToast('Please Verify Your Email','short')
@@ -48,7 +50,7 @@ const Signin = ({navigation}) => {
                 resizeMode='contain'
                 source={{ uri: logo }} />
             
-            <LoadingScreen />
+            
 
             <View style={styles.inputContainer} >
                 <Image style={styles.img} source={{ uri: 'https://static.vecteezy.com/system/resources/previews/002/079/984/original/phone-icon-flat-style-isolated-on-grey-background-telephone-symbol-call-illustration-sign-for-web-and-mobile-app-free-vector.jpg' }} />

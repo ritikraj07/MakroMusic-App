@@ -7,11 +7,11 @@ const ArtistsDisplayer = ({ artists, title, shape }) => {
     
     const newArtistsArray = []
     
-    for (var i = 0; i < artists.length; i += 6){
+    for (var i = 0; i < artists?.length; i += 6){
         newArtistsArray.push(artists.slice(i, i+6))
     }
 
-    console.log(shape)
+    // console.log(shape)
     const CreateProfile = ({item}) => {
         return (
             <View style={{width:width/3, alignItems:'center', justifyContent:'center', marginVertical:10 }} >
