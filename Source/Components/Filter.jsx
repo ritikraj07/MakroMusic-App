@@ -1,10 +1,14 @@
-import { useState, useRef } from 'react'
-import { View, Text, Animated, StyleSheet, ScrollView, PanResponder, Dimensions, TouchableOpacity } from 'react-native';
-
+import { useState, useRef, useEffect } from 'react'
+import {
+    View, Text, Animated, StyleSheet,
+    ScrollView, PanResponder, Dimensions, TouchableOpacity
+} from 'react-native';
+import { CheckBox, Stack } from '@rneui/themed';
 import Entypo from 'react-native-vector-icons/Entypo'
 import RadioBtm from './RadioBtm';
 import HorizontalLine from './HorizontalLine';
 import { useNavigation } from '@react-navigation/native';
+import { color } from '../Style/Global';
 const { width, height } = Dimensions.get('window')
 const Filter = () => {
     const Navigation = useNavigation()
@@ -15,13 +19,15 @@ const Filter = () => {
     const [rightValue, setRightValue] = useState(100);
     const [locationRange, setlocationRange] = useState(100)
     const [matchingTypes, setMatchingTypes] = useState([
-        { type: "Track", des: 'Match with people who are listening to me same song with you at the same time', status: 'false' },
+        { type: "Track", des: 'Match with people who are listening to me same song with you at the same time', status: false },
         { type: 'Artist', des: "Match with people who are listening to same artist with you at the same time", status: false },
         { type: 'Recently Played', des: 'Match with people who have listened to the same song before', status: false }
     ])
+    useEffect(() => {
+         console.log(matchingTypes)
+     },[matchingTypes])    
 
     const drag = useRef(new Animated.ValueXY()).current
-
 
     const GenderPreference = [
         { id: 1, option: 'Men', status: false },
@@ -42,7 +48,7 @@ const Filter = () => {
         },
         onPanResponderRelease: (_, { dy }) => {
             const newValue = topValue + dy;
-            if (newValue>300) {
+            if (newValue > 300) {
                 // Close the filter panel
                 setTopValue(800);
             } else {
@@ -52,7 +58,6 @@ const Filter = () => {
         },
     });
 
-
     const handleCloseFilter = () => {
         Animated.spring(drag, {
             useNativeDriver: true,
@@ -60,11 +65,6 @@ const Filter = () => {
             friction: 5,
         }).start();
     };
-
-
-
-
-
 
     const leftSliderPanResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -102,7 +102,6 @@ const Filter = () => {
         },
     });
 
-
     const locationSliderPanResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
         onMoveShouldSetPanResponder: () => true,
@@ -116,7 +115,6 @@ const Filter = () => {
             }
         },
     });
-
 
     const locationbackgroundPanResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -138,7 +136,7 @@ const Filter = () => {
             },
             // { top: topValue },
         ]}
-        // {...filterPanResponder.panHandlers}
+    // {...filterPanResponder.panHandlers}
     >
 
 
@@ -148,7 +146,7 @@ const Filter = () => {
                 size={30}
                 color="white"
                 style={{ position: 'absolute', left: 10 }}
-                onPress={()=>Navigation.goBack()}
+                onPress={() => Navigation.goBack()}
             />
 
             <Text style={[styles.lable,]} >Matching filters</Text>
@@ -232,15 +230,40 @@ const Filter = () => {
                 <Text style={styles.lable} >Matching Type</Text>
                 {matchingTypes.map((item) => {
                     return (
-                        <View key={item.type} style={{ marginVertical: 10 }} >
-                            <View style={{ width: '80%' }} >
-                                <Text style={{ color: 'white', fontSize: 16 }} >{item.type}</Text>
-                                <Text>{item.des}</Text>
+                        <TouchableOpacity
+                            onPress={() => {
+                                setMatchingTypes((prevMatchingTypes) =>
+                                    prevMatchingTypes.map((e) => {
+                                        if (e.type === item.type) {
+                                            console.log(e.type);
+                                            return { ...item, status: !e.status };
+                                        }
+                                        console.log("===>", e.type);
+                                        return e;
+                                    })
+                                );
+                            }}
+                            key={item.type}
+                            style={{
+                                marginVertical: 10,
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <View style={{ width: '80%' }}>
+                                <Text style={{ color: 'white', fontSize: 16 }}>{item.type}</Text>
+                                <Text style={{ color: color['french-greay'] }}>{item.des}</Text>
                             </View>
-                            <View>
+                            {!item.status ? (
+                                <View style={styles.checkBox}></View>
+                            ) : (
+                                <View style={[styles.checkBox, { backgroundColor: '#00A8B6', borderColor: '#00A8B6' }]}>
+                                    <Text style={{ color: 'green' }}>✔️</Text>
+                                </View>
+                            )}
+                        </TouchableOpacity>
 
-                            </View>
-                        </View>
                     )
                 })}
             </View>
@@ -308,7 +331,14 @@ const styles = StyleSheet.create({
         height: 4,
         zIndex: 1
     },
-
+    checkBox: {
+        borderWidth: 2,
+        width: 20,
+        height: 20,
+        borderColor: '#00464d',
+        backgroundColor: '#002f33',
+        borderRadius: 3
+    }
 
 
 })

@@ -9,14 +9,14 @@ const TobBar = () => {
     let profile_uri = "https://cdn2.makromusic.com/user_image/n1-e8eca371-c012-4318-9b9b-b9bfdef2c864"
     return <View style={Style.mainView} >
         <Image source={{ uri: logo_uri }} style={Style.image} />
-        <View style={Style.search}>
+        <TouchableOpacity style={Style.search}
+            onPress={() => {
+                Navigation.navigate('Search')
+            }}
+        >
             <Feather name='search' style={Style.icon} color={'#a3a3c2'} />
-            <TextInput
-                placeholder='Search on makromuisc...'
-                placeholderTextColor='#a3a3c2'
-                style={{ color: 'white' }}
-            />
-        </View>
+            <Text style={{color:'#a3a3c2'}} >Search on makromuisc...</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={()=>Navigation.navigate('Filter')} >
 
             <FA6 name='sliders' style={Style.icon} color={'white'} />

@@ -18,10 +18,10 @@ const StackTab = () => {
                     initialRouteName: "Explore",
                 }}
             >
-                <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen name="Signin" component={Signin} />
                 <Stack.Screen name="Settings" component={Settings} />
                 <Stack.Screen name="CreateAccount" component={CreateAccount} />
+                <Stack.Screen name="Search" component={Search} />
                 <Stack.Screen name="BottomTab" component={BottomTab} />
                 <Stack.Screen name="CreateAccWithEmailPassword" component={CreateAccWithEmailPassword} />
                 <Stack.Screen name="Profile" component={Profile} />

@@ -104,52 +104,29 @@ let user = {
     recentlyPlayedSong: [
         {
             id: '1',
-            songName: 'Jai Ho',
-            artistName: 'A.R. Rahman',
-            image: 'https://example.com/jaiho.jpg',
+            name: 'Jai Ho',
+            artists: 'A.R. Rahman',
+            image: 'https://i.ytimg.com/vi/fkaYdmq-6hk/sddefault.jpg',
         },
         {
             id: '2',
-            songName: 'Lag Ja Gale',
-            artistName: 'Lata Mangeshkar',
-            image: 'https://example.com/lagjagale.jpg',
+            name: 'Lag Ja Gale',
+            artists: 'Lata Mangeshkar',
+            image: 'https://i.ytimg.com/vi/ADsk7ZJScKs/hqdefault.jpg',
         },
         {
             id: '3',
-            songName: 'Mere Sapno Ki Rani',
-            artistName: 'Kishore Kumar',
-            image: 'https://example.com/meresapnokirani.jpg',
+            name: 'Mere Sapno Ki Rani',
+            artists: 'Kishore Kumar',
+            image: 'https://timesofindia.indiatimes.com/photo/msid-90201370/90201370.jpg?resizemode=4',
         },
         {
             id: '4',
-            songName: 'Tum Hi Ho',
-            artistName: 'Arijit Singh',
-            image: 'https://example.com/tumhiho.jpg',
+            name: 'Tum Hi Ho',
+            artists: 'Arijit Singh',
+            image: 'https://www.livemint.com/lm-img/img/2023/07/31/600x338/Jawan_Zinda_Banda_1690789349278_1690789356510.png',
         },
-        {
-            id: '5',
-            songName: 'Dilbar',
-            artistName: 'Neha Kakkar',
-            image: 'https://example.com/dilbar.jpg',
-        },
-        {
-            id: '6',
-            songName: 'DJ Waley Babu',
-            artistName: 'Badshah',
-            image: 'https://example.com/djwaleybabu.jpg',
-        },
-        {
-            id: '7',
-            songName: 'Deewani Mastani',
-            artistName: 'Shreya Ghoshal',
-            image: 'https://example.com/deewanimastani.jpg',
-        },
-        {
-            id: '8',
-            songName: 'Tera Hone Laga Hoon',
-            artistName: 'Atif Aslam',
-            image: 'https://example.com/terahonelaga.jpg',
-        },
+    
     ],
     ignoredMatch: [
         {
@@ -245,8 +222,34 @@ let user = {
             image: 'https://imgs.search.brave.com/lovCzpgaCdrQq57ImUt0fuI6IX_k6G9hiB3YyJMyA4o/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9maWxt/ZmFyZS53d21pbmRp/YS5jb20vY29udGVu/dC8yMDIyL2p1bi90/b3B0ZW5zb25nc29m/anViaW5uYXV0aXlh/bHlvdW11c3RsaXN0/ZW50b29uaGlzYmly/dGhkYXkxMTY1NTE4/OTExOS5qcGc',
             historyText: 'era Hone Laga Hoon'
         },
+    ],
+    currentlyPlayed: [
+        {
+            id: '1',
+            name: 'Jai Ho',
+            artists: 'A.R. Rahman',
+            image: 'https://i.ytimg.com/vi/fkaYdmq-6hk/sddefault.jpg',
+        },
+        {
+            id: '2',
+            name: 'Lag Ja Gale',
+            artists: 'Lata Mangeshkar',
+            image: 'https://i.ytimg.com/vi/ADsk7ZJScKs/hqdefault.jpg',
+        },
+        {
+            id: '3',
+            name: 'Mere Sapno Ki Rani',
+            artists: 'Kishore Kumar',
+            image: 'https://timesofindia.indiatimes.com/photo/msid-90201370/90201370.jpg?resizemode=4',
+        },
+        {
+            id: '4',
+            name: 'Tum Hi Ho',
+            artists: 'Arijit Singh',
+            image: 'https://www.livemint.com/lm-img/img/2023/07/31/600x338/Jawan_Zinda_Banda_1690789349278_1690789356510.png',
+        },
+
     ]
-    
 
 
 }
