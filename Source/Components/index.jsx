@@ -18,6 +18,17 @@ import CreateAccWithEmailPassword from "./CreateAccWithEmailPassword";
 import LoadingScreen from "./LoadingScreen";
 import isValidEmail from "./isValidEmail";
 import showToast from "./showToast";
+import SlidingCom from "./SlidingCom";
+import Welcome from "./RegisterCom/Welcome";
+import UserName from "./RegisterCom/UserName";
+import AddPhoto from "./RegisterCom/AddPhoto";
+import BirthDate from "./RegisterCom/BirthDate";
+import Gender from "./RegisterCom/Gender";
+import About from "./RegisterCom/About";
+import Email from "./RegisterCom/Email";
+import Location from "./RegisterCom/Location";
+
+
 
 
 
@@ -29,5 +40,7 @@ export {
     SignInWithGoogle, Filter, FlowingColorText,
     Swipe, HorizontalLine, Slider, ArtistsDisplayer,
     HBar, RecentlyPlayedSong, CreateAccWithEmailPassword,
-    LoadingScreen, isValidEmail, showToast
+    LoadingScreen, isValidEmail, showToast,
+    SlidingCom, Welcome, UserName, AddPhoto,
+    BirthDate, Gender, About, Email, Location
 }
