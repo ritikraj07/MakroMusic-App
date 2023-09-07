@@ -13,7 +13,8 @@ export default function RadioBtm({ item, GP, setGP }){
         >
             <Text style={{
                 color: 'white',
-                fontSize:16
+                fontSize: 16,
+                fontWeight:'500'
             }} >{item.option}</Text>
             <View
                 style={[{

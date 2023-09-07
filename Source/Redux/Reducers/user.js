@@ -249,7 +249,8 @@ let user = {
             image: 'https://www.livemint.com/lm-img/img/2023/07/31/600x338/Jawan_Zinda_Banda_1690789349278_1690789356510.png',
         },
 
-    ]
+    ],
+    progress:10
 
 
 }
@@ -265,7 +266,10 @@ const userSlice = createSlice({
         removeFromSearchHistory: (state, action) => {
             state.searchHistory = [...state.searchHistory.filter(e=>e.id!=action.payload)]
         },
-        clearSearchHistory:(state)=>{state.searchHistory = []}
+        clearSearchHistory: (state) => { state.searchHistory = [] },
+        setprogress: (state) => {
+            state.progress +=12.5
+        }
 
     },
 
@@ -273,7 +277,7 @@ const userSlice = createSlice({
 
 export const { setUser, clearUser, logOut,
     logIn, removeFromSearchHistory,
-    clearSearchHistory
+    clearSearchHistory, setprogress
 } = userSlice.actions;
 
 export default userSlice.reducer;
