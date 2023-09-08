@@ -6,7 +6,8 @@ import {
     SafeAreaView, TouchableOpacity,
 } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { setprogress } from '../../Redux/Reducers/user'
+import { setUser, setprogress } from '../../Redux/Reducers/user'
+import showToast from '../showToast';
 const Gender = () => {
     let dispatch = useDispatch()
     const [GP, setGP] = useState(4)
@@ -43,7 +44,12 @@ const Gender = () => {
 
             <TouchableOpacity style={styles.btm}
                 onPress={() => {
+                    if (GP == 4) {
+                        showToast('Please Select Your Gender', 'short')
+                        return
+                    }
                     dispatch(setprogress())
+                    dispatch(setUser({field:'gender', value:GenderPreference[GP].option}))
                 }}
             >
                 <Text style={styles.btmText}>Continue</Text>

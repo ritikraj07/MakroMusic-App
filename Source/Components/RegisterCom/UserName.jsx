@@ -1,18 +1,20 @@
-import { } from 'react'
+import { useState} from 'react'
 import {View, Text, Platform, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
-import { useDispatch } from 'react-redux'
-import { setprogress } from '../../Redux/Reducers/user'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser, setprogress } from '../../Redux/Reducers/user'
 const UserName = () => {
+    const {name} = useSelector((store)=>store.user)
+    const [username, setUsername] = useState(name)
     let dispatch = useDispatch()
-    let user = 'Ritik Raj'
+    
+    
     return (
         <SafeAreaView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container} >
 
             <View style={styles.box}>
                 <Text style={styles.header} >
-                    Welcome, {user}!
+                    Welcome, {name}!
                 </Text>
                 <Text style={[styles.header, {marginTop:-5}]} >
                     Choose a username
@@ -24,12 +26,15 @@ const UserName = () => {
                 <View style={styles.inputBox} >
                     <Text style={{color:'#bbbdca', fontSize:20, marginTop:-5}} >@</Text>
                     <TextInput style={styles.input} placeholderTextColor={'#bbbdca'}
-                        placeholder={`${user}`} />
+                        placeholder={`${name}`} 
+                        onChangeText={setUsername}
+                        />
                 </View>
             </View>
 
             <TouchableOpacity style={styles.btm}
                 onPress={() => {
+                    dispatch(setUser({field:'username', value:username}))
                     dispatch(setprogress())
                 }}
             >
