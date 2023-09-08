@@ -1,9 +1,10 @@
-import { } from 'react'
+import {useState } from 'react'
 import { View, Text, Platform, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
-import { setprogress } from '../../Redux/Reducers/user'
+import { setUser, setprogress } from '../../Redux/Reducers/user'
 const About = () => {
     let dispatch = useDispatch()
+    const[about, setAbout] = useState('Everything is OK if our music taste is in common.')
     return (
         <SafeAreaView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -19,13 +20,16 @@ const About = () => {
 
                 <View style={styles.inputBox} >
                     <TextInput style={styles.input} placeholderTextColor={'#bbbdca'}
+                        onChangeText={setAbout}
                         placeholder={'Everything is OK if our music taste is in common.'} />
                 </View>
             </View>
 
             <TouchableOpacity style={styles.btm}
                 onPress={() => {
+                    dispatch(setUser({field:'about', value:about}))
                     dispatch(setprogress())
+
                 }}
             >
                 <Text style={styles.btmText}>Continue</Text>

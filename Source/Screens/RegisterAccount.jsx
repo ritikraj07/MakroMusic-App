@@ -5,10 +5,8 @@ import { AddPhoto, BirthDate, Gender, UserName, Welcome, About, Email, Location 
 import {useDispatch, useSelector} from 'react-redux'
 
 const RegisterAccount = ({navigation}) => {
-    
     const { progress } = useSelector((state) => state.user)
     useEffect(() => {
-        // console.log(progress)
         if (progress >= 100) {
             navigation.navigate("BottomTab")
     }

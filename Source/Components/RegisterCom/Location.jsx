@@ -46,6 +46,7 @@ const Location = () => {
 
             <TouchableOpacity style={styles.btm}
                 onPress={() => {
+                    
                     dispatch(setprogress())
                 }}
             >

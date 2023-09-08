@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@rneui/themed';
 
 import { Provider } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context'
-import GlobalStyle from './Source/Style/Global.jsx';
+
 import Filter from './Source/Components/Filter.jsx';
 import store from './Source/Redux/Store.js';
 import LoadingScreen from './Source/Components/LoadingScreen.jsx';

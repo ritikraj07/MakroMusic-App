@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 let user = {
     image: 'https://cdn2.makromusic.com/user_image/n1-e8eca371-c012-4318-9b9b-b9bfdef2c864',
-    name: "Ritik Raj",
+    name: "Ritik",
     isPremiumUser: true,
     username: '@ritikraj07',
     spotifyId: '',
@@ -259,7 +259,10 @@ const userSlice = createSlice({
     name: 'user',
     initialState: user,
     reducers: {
-        setUser: (state, action) => action.payload,
+        setUser: (state, action) => {
+            const {field, value} = action.payload
+            state[field] = value
+        },
         clearUser: () => null,
         logOut: (state) => {state.isloggedIn = false},
         logIn: (state) => { state.isloggedIn = true },
@@ -269,7 +272,8 @@ const userSlice = createSlice({
         clearSearchHistory: (state) => { state.searchHistory = [] },
         setprogress: (state) => {
             state.progress +=12.5
-        }
+        },
+        
 
     },
 
