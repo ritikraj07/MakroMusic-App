@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import GlobalStyle from '../Style/Global';
 import { AddPhoto, BirthDate, Gender, UserName, Welcome, About, Email, Location } from '../Components';
 import {useDispatch, useSelector} from 'react-redux'
+import { decprogress } from '../Redux/Reducers/user';
 
-const RegisterAccount = ({navigation}) => {
-    const { progress } = useSelector((state) => state.user)
+const RegisterAccount = ({ navigation }) => {
+    let dispatch = useDispatch()
+    const user = useSelector((state) => state.user)
+    const {progress} = user
+
     useEffect(() => {
+        
+            console.log(progress)
         if (progress >= 100) {
             navigation.navigate("BottomTab")
     }
@@ -33,11 +40,33 @@ const RegisterAccount = ({navigation}) => {
 
     return (
         <View style={[GlobalStyle.screenBG, { paddingHorizontal: 10 }]} >
-            <View style={styles.progresBar}>
-                <View style={[styles.bar, { width: `${progress}%` }]} />
+            <View
+                style={{
+                    flexDirection: 'row',
+                    width: '100%',
+                    // borderWidth: 1,
+                    // borderColor: 'red',
+                    alignItems: 'center',
+                    marginTop: 30,
+                    justifyContent:'space-between'
+                    
+                }}
+            >
+                <TouchableOpacity
+                    onPress={()=>dispatch(decprogress())}
+                >
+                    <MaterialIcons name="keyboard-backspace" color="white" size={30} />
+                </TouchableOpacity>
+
+                <View style={styles.progresBar}>
+                    <View style={[styles.bar, { width: `${progress}%` }]} />
+                </View>
             </View>
+           
 
             <ReturnUi />
+
+            
 
 
         </View>
@@ -49,10 +78,9 @@ export default RegisterAccount;
 const styles = StyleSheet.create({
 
     progresBar: {
-        width: '100%',
+        width: '88%',
         height: 12,
         backgroundColor: '#bbbdca',
-        marginTop: 30,
         borderRadius: 20,
         overflow:'hidden'
     },

@@ -1,13 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 let user = {
-    image: 'https://cdn2.makromusic.com/user_image/n1-e8eca371-c012-4318-9b9b-b9bfdef2c864',
-    name: "Ritik",
-    isPremiumUser: true,
-    username: '@ritikraj07',
+    name: "",
+    emami:"",
+    image: [],
+    isPremiumUser: false,
+    username: '',
+    location:{},
     spotifyId: '',
     instagram: false,
-    about: 'Everthing thing is ok ',
+    about: 'Everything is OK if our music taste is in common.',
     isloggedIn:true,
     artists: [
         {
@@ -260,8 +262,9 @@ const userSlice = createSlice({
     initialState: user,
     reducers: {
         setUser: (state, action) => {
-            const {field, value} = action.payload
+            const { field, value } = action.payload
             state[field] = value
+            console.log(current(state))
         },
         clearUser: () => null,
         logOut: (state) => {state.isloggedIn = false},
@@ -273,6 +276,10 @@ const userSlice = createSlice({
         setprogress: (state) => {
             state.progress +=12.5
         },
+        decprogress: (state) => {
+            if (state.progress <= 12.5) return;
+            state.progress -= 12.5
+        }
         
 
     },
@@ -281,7 +288,7 @@ const userSlice = createSlice({
 
 export const { setUser, clearUser, logOut,
     logIn, removeFromSearchHistory,
-    clearSearchHistory, setprogress
+    clearSearchHistory, setprogress, decprogress
 } = userSlice.actions;
 
 export default userSlice.reducer;

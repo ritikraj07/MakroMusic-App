@@ -1,10 +1,10 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { View, Text, Platform, StyleSheet, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser, setprogress } from '../../Redux/Reducers/user'
 const Email = () => {
     let dispatch = useDispatch()
-    const {email} = useSelector((state)=>state.user)
+    const { email } = useSelector((state) => state.user)
     const [Email, setEmail] = useState(email)
     return (
         <SafeAreaView
@@ -21,16 +21,16 @@ const Email = () => {
 
                 <View style={styles.inputBox} >
                     <TextInput style={styles.input} placeholderTextColor={'#bbbdca'}
-                        placeholder={`${email}`} 
+                        placeholder={`${email}`}
 
                         onChangeText={setEmail}
-                        />
+                    />
                 </View>
             </View>
 
             <TouchableOpacity style={styles.btm}
                 onPress={() => {
-                    dispatch(setUser({field:'email', value:Email}))
+                    dispatch(setUser({ field: 'email', value: Email }))
                     dispatch(setprogress())
                 }}
             >

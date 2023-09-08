@@ -28,8 +28,8 @@ const Welcome = () => {
 
             <TouchableOpacity style={styles.btm}
                 onPress={() => {
+                    dispatch(setUser({ field: 'name', value: myname }))
                     dispatch(setprogress())
-                    // dispatch(setUser({ field: 'name', value: myname }))
                 }}
             >
                 <Text style={styles.btmText}>Continue</Text>
