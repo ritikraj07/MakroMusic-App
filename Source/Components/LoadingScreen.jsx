@@ -7,7 +7,7 @@ const {width, height} = Dimensions.get('window')
 
 const LoadingScreen = () => {
     let isloading = useSelector((state) => state.loading.value)
-    // console.log(useSelector((state)=>state), "<====")
+    
     console.log('isloading', isloading)
     return (
         <View style={[ isloading && {

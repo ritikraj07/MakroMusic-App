@@ -7,7 +7,7 @@ const About = () => {
     const[about, setAbout] = useState('Everything is OK if our music taste is in common.')
     return (
         <SafeAreaView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            
             style={styles.container} >
 
             <View style={styles.box}>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical:8
+        
         
     },
     input: {

@@ -49,7 +49,7 @@ const Gender = () => {
                         return
                     }
                     dispatch(setprogress())
-                    dispatch(setUser({field:'gender', value:GenderPreference[GP].option}))
+                    dispatch(setUser({field:'gender', value:GenderPreference[GP-1].option}))
                 }}
             >
                 <Text style={styles.btmText}>Continue</Text>
