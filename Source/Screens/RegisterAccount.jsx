@@ -6,14 +6,13 @@ import { AddPhoto, BirthDate, Gender, UserName, Welcome, About, Email, Location 
 import {useDispatch, useSelector} from 'react-redux'
 import { decprogress } from '../Redux/Reducers/user';
 
+
 const RegisterAccount = ({ navigation }) => {
     let dispatch = useDispatch()
-    const user = useSelector((state) => state.user)
-    const {progress} = user
+    const {progress} = useSelector((state) => state.user)
+    
 
     useEffect(() => {
-        
-            console.log(progress)
         if (progress >= 100) {
             navigation.navigate("BottomTab")
     }
@@ -65,6 +64,8 @@ const RegisterAccount = ({ navigation }) => {
            
 
             <ReturnUi />
+
+            
 
             
 
