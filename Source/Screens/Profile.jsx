@@ -11,14 +11,14 @@ const { width, height } = Dimensions.get('window')
 
 const Profile = ({ navigation }) => {
     
-    let user = useSelector((store) => store.user) 
-    // console.log("===>", user)
+    let { name, username, image, artists, recentlyPlayedSong, about } = useSelector((store) => store.user) 
+    
 
     return (
         <ScrollView style={[GlobalStyle.screenBG, styles.screen]} nestedScrollEnabled={true} >
             {/* profile image  */}
             {/* resizemode = contain | cover */}
-            <ImageBackground resizeMode='cover' source={{ uri: user.image }} style={styles.image} >
+            <ImageBackground resizeMode='cover' source={{ uri: image[0].uri }} style={styles.image} >
                 <TouchableOpacity style={[styles.iconsWrapper, { left: 20, top: 20 }]}
                     onPress={()=>navigation.goBack()}
                 >
@@ -32,8 +32,8 @@ const Profile = ({ navigation }) => {
                     <View style={styles.premiumBandage}>
                         <Text style={{ color: 'white', fontSize: 16, letterSpacing: 3, textAlign:'center' }} >SUPER PREMIUM</Text>
                     </View>
-                    <Text style={{ color: 'white', fontSize: 25, fontWeight: 900 }} > {user.name} </Text>
-                    <Text style={{color:'rgba(90,218,190,1)', fontSize:16}}>{user.username}</Text>
+                    <Text style={{ color: 'white', fontSize: 25, fontWeight: 900 }} > {name} </Text>
+                    <Text style={{color:'rgba(90,218,190,1)', fontSize:16}}>{username}</Text>
                 </LinearGradient>
             </ImageBackground>
 
@@ -58,7 +58,7 @@ const Profile = ({ navigation }) => {
                 </View>
             </View>
 
-            <Text style={{ color: 'white', margin: 10 }} >{user.about}</Text>
+            <Text style={{ color: 'white', margin: 10 }} >{about}</Text>
             
             <View style={styles.playlistView} >
                 <TouchableOpacity style={styles.addPlaylist} >
@@ -78,9 +78,9 @@ const Profile = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
     
-                <ArtistsDisplayer artists={user.artists} title={'My Favorite Artists'} shape={'circle'} />
+                <ArtistsDisplayer artists={artists} title={'My Favorite Artists'} shape={'circle'} />
                 <HorizontalLine />
-                <ArtistsDisplayer artists={user.artists} title={'My Favorite Songs'} shape={'square'} />
+                <ArtistsDisplayer artists={artists} title={'My Favorite Songs'} shape={'square'} />
                 <HorizontalLine />
 
                 <View style={{padding:10,}} >
@@ -93,7 +93,7 @@ const Profile = ({ navigation }) => {
                 </View>
                 <View style={{ padding: 10, }}>
                     <Text style={styles.title} >My Recently Played</Text>
-                    {user?.recentlyPlayedSong?.map((item)=><RecentlyPlayedSong key={item.id} item={item} />)}
+                    {recentlyPlayedSong?.map((item)=><RecentlyPlayedSong key={item.id} item={item} />)}
                 </View>
                 
             </View>
