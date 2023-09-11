@@ -11,10 +11,8 @@ const { width, height } = Dimensions.get('window')
 
 const Profile = ({ navigation }) => {
     
-    let { name, username, image, artists, about, recentlyPlayedSong } = useSelector((store) => store.user) 
 
-    
-    // console.log("===>", user)
+    let { name, username, image, artists, recentlyPlayedSong, about } = useSelector((store) => store.user) 
 
     return (
         <ScrollView style={[GlobalStyle.screenBG, styles.screen]} nestedScrollEnabled={true} >
