@@ -22,7 +22,7 @@ import {useSelector, useDispatch} from 'react-redux'
 
 const Settings = ({navigation}) => {
     let dispatch = useDispatch()
-    let {name, image, age, isloggedIn} = useSelector((state) => state.user)
+    let {name, image, age, isloggedIn, } = useSelector((state) => state.user)
     
     const LogOut = () => {
         auth().signOut()
@@ -94,7 +94,7 @@ const Settings = ({navigation}) => {
                     {/* profile */}
                     <View style={styles.box} >
                         <View style={styles.box} >
-                            <Image source={{ uri: image }} style={{width:50, height:50, borderRadius:50}} />
+                            <Image source={{ uri: image[0].uri }} style={{width:50, height:50, borderRadius:50}} />
                             <View>
                                 <Text style={styles.lable} > {name}</Text>
                                 <Text style={{ color: color['french-greay'], marginLeft:15 }}>Edit Profile</Text>

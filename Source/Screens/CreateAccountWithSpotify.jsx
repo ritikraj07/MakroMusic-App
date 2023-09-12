@@ -9,30 +9,32 @@ const CreateAccountWithSpotify = () => {
 
 
     async function login() {
-        const config = {
-            clientId: '56f171692ab84aceba329f5457f7dbef',
-            redirectUrl: 'com.makromusic.MakroMusic:/callback',
-            scopes: ['user-library-read', 'user-library-modify'],
-            serviceConfiguration: {
-                authorizationEndpoint: 'https://accounts.spotify.com/authorize',
-                tokenEndpoint: 'https://accounts.spotify.com/api/token',
-            },
-        };
+    const config = {
+        issuer: 'https://accounts.spotify.com',
+        clientId: '56f171692ab84aceba329f5457f7dbef',
+        redirectUrl: 'com.makromusic.MakroMusic:/callback',
+        scopes: ['user-library-read', 'user-library-modify'],
+    };
 
+    try {
         const result = await authorize(config);
-        console.log(result)
+        console.log(result);
 
-        const accessToken = result.accessToken; // Obtained from the authentication step
-
-        const response = await fetch('https://api.spotify.com/v1/me/playlists', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-
-        const data = await response.json();
-        console.log(data);
+        // Now, you can continue with your code after a successful authorization.
+        // const accessToken = result.accessToken;
+        // const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+        //     headers: {
+        //         Authorization: `Bearer ${accessToken}`,
+        //     },
+        // });
+        // const data = await response.json();
+        // console.log(data);
+    } catch (error) {
+        // Handle the error gracefully here
+        console.error('Authorization error:', error);
     }
+}
+
 
     let logo = 'https://cdn-images-1.medium.com/fit/t/1600/480/1*FpqeaQi8Q1siHs9M2gEMZA.png'
 
@@ -51,7 +53,8 @@ const CreateAccountWithSpotify = () => {
                 </Text>
             </View>
 
-            <TouchableOpacity
+                <TouchableOpacity
+                    onPress={login}
                 style={{
                     borderWidth: 1,
                     borderColor: color['french-greay'],
